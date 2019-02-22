@@ -1,4 +1,5 @@
 module Main where
+import qualified AptParse as A
 
 main :: IO ()
-main = putStrLn "Hello, Haskell!"
+main = A.main
