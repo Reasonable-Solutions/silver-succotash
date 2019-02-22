@@ -11,11 +11,9 @@ module GenParse where
 
 import Options.Generic
 
-import           Options.Generic
-
 data Hello w
-  = Hello { name     :: w ::: String <?> "target name"
-           , yey    :: w ::: Maybe Bool <?> "quiet mode"
+  = Hello { name :: w ::: String <?> "target name"
+           , yey :: w ::: Maybe Bool <?> "quiet mode"
            , wee :: w ::: Maybe Int <?> "n, how happy"
            } deriving (Generic)
 

@@ -9,16 +9,29 @@ data Hello = Hello
   , wee :: Int
   } deriving (Eq, Show)
 
+{- |
+    A Parser for Things
+    is a function from Strings
+    to Lists of Pairs
+    of Things and Strings!
+
+`Parser a = String -> [(a, String)]
+-}
+
+
 helloParser :: Parser Hello
 helloParser = Hello
   <$> strOption (long "name" <> metavar "NAME" <> help "This is your name")
   <*> switch (long "quiet" <> short 'q' <> help "quiet mode")
   <*> option auto (long "weee" <> help "how you much hello" <> showDefault <> value 1 <> metavar "INT")
 
+-- | Rewrite with applicative do notation
 helloParser' :: Parser Hello
 helloParser' = do
    name <- strOption (long "name" <> metavar "NAME" <> help "This is your name")
+
    quiet <- switch (long "quiet" <> short 'q' <> help "quiet mode")
+
    happy <- option auto (long "weee" <> help "how you much hello" <> showDefault <> value 1 <> metavar "INT")
    pure $ Hello name quiet happy
 
